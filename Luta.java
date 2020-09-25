@@ -5,39 +5,26 @@ public class Luta {
 	private Pugilista oponente2;
 	private Arbitragem arbitros;
 	private Pugilista vencedor;
+	private int quantidadeRounds;
 	
-	public Pugilista getOponente1() {
-		return oponente1;
-	}
-
-	public void setOponente1(Pugilista oponente1) {
+	Luta(Pugilista oponente1, Pugilista oponente2, int quantidadeRounds){
 		this.oponente1 = oponente1;
-	}
-
-	public Pugilista getOponente2() {
-		return oponente2;
-	}
-
-	public void setOponente2(Pugilista oponente2) {
 		this.oponente2 = oponente2;
-	}
-
-	public Arbitragem getArbitros() {
-		return arbitros;
-	}
-
-	public void setArbitros(Arbitragem arbitros) {
-		this.arbitros = arbitros;
+		this.quantidadeRounds = quantidadeRounds;
+		//this.arbitros = arbitros;
 	}
 
 	public Pugilista getVencedor() {
 		return vencedor;
 	}
 
-	public void setVencedor(Pugilista vencedor) {
-		this.vencedor = vencedor;
+	public void iniciarLuta() {
+		/* for(int i=0; i<quantidadeRounds; i++) {
+			
+		}*/
+		
+		System.out.printf("Atk: %f\n", oponente1.atacar());	
+		System.out.printf("Def: %f\n", oponente2.defender());
 	}
 
-	public static void main(String[] args) {
-	}
 }
