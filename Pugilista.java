@@ -1,12 +1,13 @@
 package lutaBoxe;
 
 public class Pugilista extends Pessoa{
-	private double altura;
 	private double peso;
-	private double envergadura;
 	private String categoria;
 	
 	/*
+	private double altura;
+	private double envergadura;
+	
 	private int pegada = 1;
 	private int velocidade = 1;
 	private int footwork = 1;
@@ -19,11 +20,7 @@ public class Pugilista extends Pessoa{
 	private int derrotas = 0;
 	private int empates = 0;
 	private int knockouts = 0;
-	
-	Pugilista(){
-		super();
-	}
-	
+
 	/*
 	Pugilista(String nome, int idade, int pegada, int velocidade, int footwork, int resistencia, int agilidade){
 		super(nome, idade, "pugilista");
@@ -41,6 +38,10 @@ public class Pugilista extends Pessoa{
 	public void acrescentarVitoria() {
 		this.vitorias++;
 	}
+	
+	public void acrescentarKnockOuts() {
+		this.knockouts++;
+	}
 
 	public void acrescentartDerrota() {
 		this.derrotas++;
@@ -51,16 +52,8 @@ public class Pugilista extends Pessoa{
 	}
 	
 	// get e set
-	public double getAltura() {
-		return altura;
-	}
-	
 	public double getPeso() {
 		return peso;
-	}
-
-	public double getEnvergadura() {
-		return envergadura;
 	}
 
 	public String getCategoria() {
@@ -83,5 +76,7 @@ public class Pugilista extends Pessoa{
 		return empates;
 	}
 
-	
+	public int getKnockouts() {
+		return knockouts;
+	}
 }

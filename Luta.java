@@ -1,7 +1,5 @@
 package lutaBoxe;
 
-import java.util.Date;
-
 public class Luta {
 	private Pugilista oponente1;
 	private Pugilista oponente2;
@@ -13,43 +11,64 @@ public class Luta {
 	private int oponente2pontos[];
 	
 	// resultado
+	private boolean knockout; // acaba a luta
+	private int roundFinal; // round em que a luta acabou
 	private boolean empate;
 	private Pugilista vencedor;
 	
 	Luta(Pugilista oponente1, Pugilista oponente2, Arbitragem arbitros, int quantidadeRounds){
 		this.oponente1 = oponente1;
 		this.oponente2 = oponente2;
-		this.quantidadeRounds = quantidadeRounds;
 		this.arbitros = arbitros;
 		
+		this.quantidadeRounds = quantidadeRounds;
+		this.roundFinal = quantidadeRounds;
+	
 		oponente1pontos = new int[quantidadeRounds];
 		oponente2pontos = new int[quantidadeRounds];
 	}
 
-	public Pugilista getVencedor() {
+	public Pugilista contarPontos() {
 		int totalPontosOponente1 = 0;
 		int totalPontosOponente2 = 0;
-
-		for(int i=0; i<quantidadeRounds; i++) {
+		
+		for(int i=0; i<roundFinal; i++) {
 			totalPontosOponente1 += oponente1pontos[i];
 			totalPontosOponente2 += oponente2pontos[i];
 		}
 		
-		this.vencedor = (totalPontosOponente1 > totalPontosOponente2)?(this.oponente1):(this.vencedor = oponente2);
-	
-		if(totalPontosOponente1 == totalPontosOponente2) {
-			// empate
-			this.vencedor = null;
-			this.empate = true;
-		}
+	    if(totalPontosOponente1 == totalPontosOponente2) {
+	    	// empate
+	    	this.vencedor = null;
+	    	this.empate = true;
+	    }
+	    else{
+	    	// um ganhador
+	    	this.vencedor = (totalPontosOponente1 > totalPontosOponente2)?(this.oponente1):(this.oponente2);
+	    }
 		
 		return this.vencedor;
 	}
+	
+	private boolean knockout() {
+		// Contagem para determinar se foi apenas knockdown ou um knockout
+		this.knockout = (this.arbitros.contagem() == Arbitragem.KNOCKOUT)?(true):(false);
+		return this.knockout; 
+	}
 
 	public void iniciarLuta() {
+		int sorte;
+		
 		for(int i=0; i<quantidadeRounds; i++) {
 			oponente1pontos[i] = this.arbitros.pontuar();
 			oponente2pontos[i] = this.arbitros.pontuar();
+			
+			if(this.knockout()) {
+				sorte = (int)(Math.random()*10);
+				this.roundFinal = i;
+				this.vencedor = sorte > 5 ? this.oponente1 : this.oponente2;
+				break;
+			}	
 		}
 	}
 	
@@ -59,12 +78,18 @@ public class Luta {
 			this.vencedor = this.oponente1;
 			this.oponente1.acrescentarVitoria();
 			this.oponente2.acrescentartDerrota();
+			
+			if(this.isKnockout())
+				this.oponente1.acrescentarKnockOuts();
 		}
 		else if(this.getVencedor() == oponente2) {
 			//vitoria oponente 2
 			this.vencedor = oponente2;
 			this.oponente2.acrescentarVitoria();
 			this.oponente1.acrescentartDerrota();
+			
+			if(this.isKnockout())
+				this.oponente2.acrescentarKnockOuts();
 		}
 		else {
 			// empate
@@ -78,5 +103,21 @@ public class Luta {
 	public boolean isEmpate() {
 		return empate;
 	}
+	
+	public boolean isKnockout() {
+		return knockout;
+	}
+	
+	public Pugilista getVencedor() {
+		return vencedor;
+	}
 
+	public int[] getOponente1pontos() {
+		return oponente1pontos;
+	}
+
+	public int[] getOponente2pontos() {
+		return oponente2pontos;
+	}
+	
 }
