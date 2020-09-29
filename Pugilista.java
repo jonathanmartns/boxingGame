@@ -15,10 +15,10 @@ public class Pugilista extends Pessoa{
 	*/
 	
 	//cartel do lutador
-	private int vitorias;
-	private int derrotas;
-	private int empates;
-	private int knockouts;
+	private int vitorias = 0;
+	private int derrotas = 0;
+	private int empates = 0;
+	private int knockouts = 0;
 	
 	Pugilista(){
 		super();
@@ -38,6 +38,19 @@ public class Pugilista extends Pessoa{
 		super(nome, idade, "pugilista");
 	}
 	
+	public void acrescentarVitoria() {
+		this.vitorias++;
+	}
+
+	public void acrescentartDerrota() {
+		this.derrotas++;
+	}
+
+	public void acrescentarEmpates() {
+		this.empates++;
+	}
+	
+	// get e set
 	public double getAltura() {
 		return altura;
 	}
@@ -58,12 +71,17 @@ public class Pugilista extends Pessoa{
 		this.categoria = categoria;
 	}
 	
-	/*
-	public double atacar() {
-		return ((pegada * ((velocidade+footwork)/pegada)));
+	public int getVitorias() {
+		return vitorias;
+	}
+
+	public int getDerrotas() {
+		return derrotas;
 	}
 	
-	public double defender() {
-		return (resistencia * ((footwork + agilidade)/resistencia));
-	} */
+	public int getEmpates() {
+		return empates;
+	}
+
+	
 }

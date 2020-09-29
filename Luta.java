@@ -1,6 +1,6 @@
 package lutaBoxe;
 
-import java.util.Random;
+import java.util.Date;
 
 public class Luta {
 	private Pugilista oponente1;
@@ -35,13 +35,9 @@ public class Luta {
 			totalPontosOponente2 += oponente2pontos[i];
 		}
 		
-		if(totalPontosOponente1 > totalPontosOponente2) {
-			this.vencedor = oponente1;
-		}
-		else if(totalPontosOponente1 < totalPontosOponente2) {
-			this.vencedor = oponente2;
-		}
-		else {
+		this.vencedor = (totalPontosOponente1 > totalPontosOponente2)?(this.oponente1):(this.vencedor = oponente2);
+	
+		if(totalPontosOponente1 == totalPontosOponente2) {
 			// empate
 			this.vencedor = null;
 			this.empate = true;
@@ -52,15 +48,35 @@ public class Luta {
 
 	public void iniciarLuta() {
 		for(int i=0; i<quantidadeRounds; i++) {
-			if((int)Math.random() * 1) {
-				
-			}else {
-				
-			}
+			oponente1pontos[i] = this.arbitros.pontuar();
+			oponente2pontos[i] = this.arbitros.pontuar();
 		}
-		
-		System.out.printf("Atk: %f\n", oponente1.atacar());	
-		System.out.printf("Def: %f\n", oponente2.defender());
+	}
+	
+	public void atualizarCartel() {
+		if(this.getVencedor() == oponente1) {
+			//vitoria oponente 1
+			this.vencedor = this.oponente1;
+			this.oponente1.acrescentarVitoria();
+			this.oponente2.acrescentartDerrota();
+		}
+		else if(this.getVencedor() == oponente2) {
+			//vitoria oponente 2
+			this.vencedor = oponente2;
+			this.oponente2.acrescentarVitoria();
+			this.oponente1.acrescentartDerrota();
+		}
+		else {
+			// empate
+			this.vencedor = null;
+			this.empate = true;
+			this.oponente1.acrescentarEmpates();
+			this.oponente2.acrescentarEmpates();
+		}
+	}
+	
+	public boolean isEmpate() {
+		return empate;
 	}
 
 }
