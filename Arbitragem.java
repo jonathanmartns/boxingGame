@@ -1,8 +1,11 @@
 package lutaBoxe;
 
-public class Arbitragem {
-	private Pessoa arbirtro;
-	private Pessoa juiz;
-	private Pessoa cronometrista;
-	private Pessoa diretorTecnico;
+public class Arbitragem extends Pessoa{
+	static int pontuacaoMaxima = 10;
+	static int pontuacaoMinima = 8;
+	
+	public int pontuar() {
+		return ((int) ((Math.random()*(pontuacaoMaxima - pontuacaoMinima)) + pontuacaoMinima));
+	}
+	
 }
