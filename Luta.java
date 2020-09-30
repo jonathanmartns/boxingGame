@@ -50,10 +50,11 @@ public class Luta {
 		return this.vencedor;
 	}
 	
-	private boolean knockout() {
+	private int knockdown() {
 		// Contagem para determinar se foi apenas knockdown ou um knockout
-		this.knockout = (this.arbitros.contagem() == Arbitragem.KNOCKOUT)?(true):(false);
-		return this.knockout; 
+		int contagemResultado = this.arbitros.contagem(); 
+		this.knockout = (contagemResultado == Arbitragem.KNOCKOUT_CODIGO)?(true):(false);
+		return contagemResultado; 
 	}
 
 	public void iniciarLuta() {
@@ -63,7 +64,9 @@ public class Luta {
 			oponente1pontos[i] = this.arbitros.pontuar();
 			oponente2pontos[i] = this.arbitros.pontuar();
 			
-			if(this.knockout()) {
+			// abre contagem para cada knockdown
+			// se o atleta nao resiste a contagem, fim de luta
+			if(this.knockdown() == Arbitragem.KNOCKOUT_CODIGO) {
 				sorte = (int)(Math.random()*10);
 				this.roundFinal = i;
 				this.vencedor = sorte > 5 ? this.oponente1 : this.oponente2;

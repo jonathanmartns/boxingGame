@@ -1,38 +1,56 @@
 package lutaBoxe;
 
-public class Pugilista extends Pessoa{
+public class Pugilista extends Pessoa implements Cartel{
 	private double peso;
-	private String categoria;
+	private int categoria;
 	
-	/*
-	private double altura;
-	private double envergadura;
+	//caterogias
+	static final int MOSCA = 1; 
+	static final int MEDIO = 2; 
+	static final int PESADOS = 3;
 	
-	private int pegada = 1;
-	private int velocidade = 1;
-	private int footwork = 1;
-	private int resistencia = 1;
-	private int agilidade= 1; 
-	*/
+	static final double PESO_MOSCA = 50.00;
+	static final double PESO_MEDIO = 73.00;
+	static final double PESO_PESADOS = 100.00;
+	
 	
 	//cartel do lutador
 	private int vitorias = 0;
 	private int derrotas = 0;
 	private int empates = 0;
 	private int knockouts = 0;
-
-	/*
-	Pugilista(String nome, int idade, int pegada, int velocidade, int footwork, int resistencia, int agilidade){
-		super(nome, idade, "pugilista");
-		this.pegada = pegada;
-		this.velocidade = velocidade;
-		this.footwork = footwork;
-		this.agilidade = agilidade;
-		this.resistencia = resistencia;
-	} */
 	
-	Pugilista(String nome, int idade){
+//	private double altura;
+//	private double envergadura;
+//	
+//	private int pegada = 1;
+//	private int velocidade = 1;
+//	private int footwork = 1;
+//	private int resistencia = 1;
+//	private int agilidade= 1; 
+//
+//	Pugilista(String nome, int idade, int pegada, int velocidade, int footwork, int resistencia, int agilidade){
+//		super(nome, idade, "pugilista");
+//		this.pegada = pegada;
+//		this.velocidade = velocidade;
+//		this.footwork = footwork;
+//		this.agilidade = agilidade;
+//		this.resistencia = resistencia;
+//	}
+	
+	Pugilista(String nome, int idade, double peso){
 		super(nome, idade, "pugilista");
+		this.peso = peso;
+		
+		if(peso <= PESO_MOSCA){
+			this.categoria = MOSCA;
+		}
+		else if(peso <= PESO_MEDIO){
+			this.categoria = MEDIO;
+		}
+		else{
+			this.categoria = PESADOS;
+		}
 	}
 	
 	public void acrescentarVitoria() {
@@ -56,12 +74,8 @@ public class Pugilista extends Pessoa{
 		return peso;
 	}
 
-	public String getCategoria() {
+	public int getCategoria() {
 		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 	
 	public int getVitorias() {
