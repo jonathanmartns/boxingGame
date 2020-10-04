@@ -1,31 +1,19 @@
 package lutaBoxe;
 
 public class Arbitragem extends Pessoa{
-	static final int PONTUACAO_MAXIMA = 10;
-	static final int PONTUACAO_MINIMA = 8;
+	public static final int PONTUACAO_MAXIMA = 10;
+	public static final int PONTUACAO_MINIMA = 8;
 	
-	static final int CONTAGEM_MAXIMA = 10;
+	public static final int CONTAGEM_MAXIMA = 10;
 	
-	static final int KNOCKDOWN = 5;
-	static final int KNOCKOUT = 8;
+	public static final int KNOCKDOWN = 5;
+	public static final int KNOCKOUT = 8;
 	
-	static final int KNOCKDOWN_CODIGO = 1;
-	static final int KNOCKOUT_CODIGO = 2;
+	public static final int KNOCKDOWN_CODIGO = 1;
+	public static final int KNOCKOUT_CODIGO = 2;
 	
 	Arbitragem() {
 	}
-	
-//	private Pessoa arbitro;
-//	private Pessoa juiz;
-//	private Pessoa cronometrista;
-//	private Pessoa diretorTecnico;
-//	
-//	Arbitragem(Pessoa arbitro, Pessoa juiz, Pessoa cronometrista, Pessoa diretorTecnico){
-//		this.arbitro = arbitro;
-//		this.juiz = juiz;
-//		this.cronometrista = cronometrista;
-//		this.diretorTecnico = diretorTecnico;
-//	} 
 	
 	public int pontuar() {
 		return ((int) ((Math.random()*(PONTUACAO_MAXIMA - PONTUACAO_MINIMA)) + PONTUACAO_MINIMA));

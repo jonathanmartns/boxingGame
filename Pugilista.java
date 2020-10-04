@@ -1,18 +1,18 @@
 package lutaBoxe;
 
 public class Pugilista extends Pessoa implements Cartel{
+	private String apelido;
 	private double peso;
 	private int categoria;
 	
 	//caterogias
-	static final int MOSCA = 1; 
-	static final int MEDIO = 2; 
-	static final int PESADOS = 3;
+	public static final int MOSCA = 1; 
+	public static final int MEDIO = 2; 
+	public static final int PESADOS = 3;
 	
-	static final double PESO_MOSCA = 50.00;
-	static final double PESO_MEDIO = 73.00;
-	static final double PESO_PESADOS = 100.00;
-	
+	public static final double PESO_MOSCA = 50.00;
+	public static final double PESO_MEDIO = 73.00;
+	public static final double PESO_PESADOS = 100.00;
 	
 	//cartel do lutador
 	private int vitorias = 0;
@@ -20,27 +20,12 @@ public class Pugilista extends Pessoa implements Cartel{
 	private int empates = 0;
 	private int knockouts = 0;
 	
-//	private double altura;
-//	private double envergadura;
-//	
-//	private int pegada = 1;
-//	private int velocidade = 1;
-//	private int footwork = 1;
-//	private int resistencia = 1;
-//	private int agilidade= 1; 
-//
-//	Pugilista(String nome, int idade, int pegada, int velocidade, int footwork, int resistencia, int agilidade){
-//		super(nome, idade, "pugilista");
-//		this.pegada = pegada;
-//		this.velocidade = velocidade;
-//		this.footwork = footwork;
-//		this.agilidade = agilidade;
-//		this.resistencia = resistencia;
-//	}
-	
-	Pugilista(String nome, int idade, double peso){
+	Pugilista(String apelido, String nome, String sobrenome, int idade, double peso){
 		super(nome, idade, "pugilista");
+		setNome(nome, sobrenome, apelido);
+		
 		this.peso = peso;
+		this.apelido = apelido;
 		
 		if(peso <= PESO_MOSCA){
 			this.categoria = MOSCA;
@@ -67,6 +52,11 @@ public class Pugilista extends Pessoa implements Cartel{
 
 	public void acrescentarEmpates() {
 		this.empates++;
+	}
+	
+	public void setNome(String nome, String sobrenome, String apelido) {
+		String nomeCompleto = nome + " '" + apelido + "' " + sobrenome;
+		super.nome = nomeCompleto;
 	}
 	
 	// get e set

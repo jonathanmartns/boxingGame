@@ -12,7 +12,7 @@ public class Luta {
 	
 	// resultado
 	private boolean knockout; // acaba a luta
-	private int roundFinal; // round em que a luta acabou
+	private int ultimoRound; // round em que a luta acabou
 	private boolean empate;
 	private Pugilista vencedor;
 	
@@ -22,7 +22,7 @@ public class Luta {
 		this.arbitros = arbitros;
 		
 		this.quantidadeRounds = quantidadeRounds;
-		this.roundFinal = quantidadeRounds;
+		this.ultimoRound = quantidadeRounds;
 	
 		oponente1pontos = new int[quantidadeRounds];
 		oponente2pontos = new int[quantidadeRounds];
@@ -32,7 +32,7 @@ public class Luta {
 		int totalPontosOponente1 = 0;
 		int totalPontosOponente2 = 0;
 		
-		for(int i=0; i<roundFinal; i++) {
+		for(int i=0; i<ultimoRound; i++) {
 			totalPontosOponente1 += oponente1pontos[i];
 			totalPontosOponente2 += oponente2pontos[i];
 		}
@@ -57,7 +57,7 @@ public class Luta {
 		return contagemResultado; 
 	}
 
-	public void iniciarLuta() {
+	public void iniciarRounds() {
 		int sorte;
 		
 		for(int i=0; i<quantidadeRounds; i++) {
@@ -68,7 +68,7 @@ public class Luta {
 			// se o atleta nao resiste a contagem, fim de luta
 			if(this.knockdown() == Arbitragem.KNOCKOUT_CODIGO) {
 				sorte = (int)(Math.random()*10);
-				this.roundFinal = i;
+				this.ultimoRound = i;
 				this.vencedor = sorte > 5 ? this.oponente1 : this.oponente2;
 				break;
 			}	
@@ -103,6 +103,11 @@ public class Luta {
 		}
 	}
 	
+	public void pesarAtletas() throws Exception{
+		if(this.oponente1.getCategoria() != this.oponente2.getCategoria()) 
+			throw new Exception("Os atletas não estão na mesma categoria de peso!");
+	}
+
 	public boolean isEmpate() {
 		return empate;
 	}

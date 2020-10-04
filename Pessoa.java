@@ -1,9 +1,9 @@
 package lutaBoxe;
 
 public abstract class Pessoa {
-	private String nome;
-	private int idade;
-	private String profissao;
+	protected String nome;
+	protected int idade;
+	protected String profissao;
 	
 	Pessoa(){
 	}
