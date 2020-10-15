@@ -59,6 +59,10 @@ public class Pugilista extends Pessoa implements Cartel{
 		super.nome = nomeCompleto;
 	}
 	
+	public String getApelido() {
+		return apelido;
+	}
+
 	// get e set
 	public double getPeso() {
 		return peso;
